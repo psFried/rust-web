@@ -1,0 +1,7 @@
+[package]
+name = "irony"
+version = "0.1.0"
+authors = ["phil"]
+
+[dependencies]
+iron = "0.1.20"
