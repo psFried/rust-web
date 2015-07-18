@@ -1,6 +1,7 @@
 extern crate hyper;
 
 use std::io::Write;
+use std::env;
 
 use hyper::Server;
 use hyper::server::Request;
