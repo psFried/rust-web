@@ -5,3 +5,8 @@ authors = ["phil"]
 
 [dependencies]
 iron = "0.1.20"
+router = "0.0.10"
+mount = "0.0.7"
+
+[dependencies.staticfile]
+git = "https://github.com/iron/staticfile.git"
