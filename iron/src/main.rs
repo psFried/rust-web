@@ -26,18 +26,18 @@ pub struct RequestLogger {
 
 impl BeforeMiddleware for RequestLogger {
     fn before(&self, req: &mut Request) -> IronResult<()> {
-        let start_time = precise_time_ns();
+        let start_time = get_current_time_micros();
 
         println!("{} - Started request at: {}, to: {}, from: {}", self.tag, start_time, req.url, req.remote_addr);
-        req.extensions.insert::<RequestTime>(precise_time_ns());
+        req.extensions.insert::<RequestTime>(start_time);
         Ok(())
     }
 }
 
 impl AfterMiddleware for RequestLogger {
     fn after(&self, req: &mut Request, res: Response) -> IronResult<Response> {
-        let total_time_nanos = req.extensions.get::<RequestTime>().unwrap();
-        println!("{} - Request took: {} ns", self.tag, total_time_nanos);
+        let start_time: u64 = *req.extensions.get::<RequestTime>().unwrap();
+        println!("{} - Request took: {} microseconds", self.tag, get_current_time_micros() - start_time);
         Ok(res)
     }
 }
@@ -73,4 +73,8 @@ fn main() {
     Iron::new(chain)
         .http("localhost:3000")
         .unwrap();
+}
+
+fn get_current_time_micros() -> u64 {
+    precise_time_ns() / 1_000u64
 }
