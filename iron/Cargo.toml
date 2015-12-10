@@ -4,13 +4,12 @@ version = "0.1.0"
 authors = ["phil"]
 
 [dependencies]
-iron = "0.1.20"
-router = "0.0.10"
+iron = "0.2"
+router = "0.1"
 mount = "0.0.7"
-time = "0.1.31"
-rustc-serialize = "0.3.15"
-persistent = "0.0.6"
+time = "0.1"
+rustc-serialize = "0.3"
+persistent = "0.0.8"
 bodyparser = "0.0.6"
+staticfile = "0.0.6"
 
-[dependencies.staticfile]
-git = "https://github.com/iron/staticfile.git"

@@ -3,6 +3,13 @@ Working with the web in Rust
 
 The main thrust of this is to show the basics of working with Iron. Iron uses Hyper as it's http library, so it's good to know a bit about how that works as well. The hyper and hyper-client projects show what that's all about.
 
+## Building
+
+Recently, OSX has deprecated openssl in favor of apple's own TLS library. This means that openssl libs and headers may not be discovered automatically. If you get any errors compiling on OSX, try setting the environment variables: `OPENSSL_INCLUDE_DIR`, and `OPENSSL_LIB_DIR`. If you've installed openssl using homebrew (`brew install openssl`), then these should be:
+
+    export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include
+    export OPENSSL_LIB_DIR=/usr/local/opt/openssl/lib
+
 ## Strengths of Iron
 
 - Modular and extensible - It's got a lot of exposed wiring, so it's pretty easy to modify or extend it in whatever way you please.
@@ -27,7 +34,6 @@ There are many things that you'd expect a framework to provide. Iron currently p
 
 ### Things that are still missing or incomplete
 
-- Database access - Crates.io doesn't offer much in terms of database drivers. Iron does nothing to help you with that. Your database options will be limited.
+- Database access - There's more options here than there used to be. Postgres and Redis both have good drivers in rust, and MongoDB isn't far off. There's even an ORM, Diesel. Compared to other languages, options are still rather limited.
 - Authorization - You'll have to roll your own. The crypto crate has most of the main hashing algorithms, but actually calling them is up to you.
 - Helpers for common configurations don't really exist. The Rustless project is taking a stab at it for REST APIs, but that's about it.
-- Multipart requests - There's a crate for this, but it looks really immature.
